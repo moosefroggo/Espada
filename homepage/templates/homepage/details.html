@@ -1,0 +1,19 @@
+{% extends 'homepage/base.html' %}	
+{% block title %}Albums{% endblock %}	
+    {% block body %}
+        <img src="{{ album.album_logo.url }}"/>
+        <h1>{{album.album_name}}</h1>
+        <h2>{{album.artist}}</h2>
+        {% if error_message %}
+        <p>error_message</p>
+        {% endif %}
+            {% for song in album.song_set.all %}
+            <label for="song{{ forloop.counter }"> 
+                {{ song.song_title }}
+                {% if song.is_favorite %}
+                <img src="http://findicons.com/files/icons/1620/crystal_project/22/knewstuff.png"/>
+                {% endif %}
+            </label>
+            <br>
+            {% endfor %}
+    {% endblock %}

@@ -1,0 +1,18 @@
+ {% extends 'homepage/base.html' %}		
+    {% block body %}
+        <ul>
+            {% for album in all_albums %}
+            <li> <a href="{% url 'homepage:details' album.id %}"> {{album.album_name}} 
+                
+                <form action="{% url 'homepage:album-delete' album.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="album_id" value="{{ album.id }}">
+                    <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </button>
+                </form>
+                
+            </li>
+            {% endfor %}
+        </ul>
+    {% endblock %}
